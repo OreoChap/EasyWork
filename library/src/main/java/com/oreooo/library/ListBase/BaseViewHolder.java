@@ -17,10 +17,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     private Context mContext;
     private View mView;
     private List mData;
-    private BaseRecyclerAdapter.OnItemClickListener mListener;
+    private BaseRecyclerAdapter.OnViewHolderClickListener mListener;
 
     private BaseViewHolder(Context context, final View itemView, List data,
-                           @Nullable BaseRecyclerAdapter.OnItemClickListener listener){
+                           @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener){
         super(itemView);
         mViews = new SparseArray<>();
         this.mContext = context;
@@ -30,13 +30,13 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     }
 
     public static BaseViewHolder createViewHolder(Context context, View itemView, List data,
-             @Nullable BaseRecyclerAdapter.OnItemClickListener listener) {
+             @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener) {
         return new BaseViewHolder(context, itemView, data, listener);
     }
 
     public static BaseViewHolder createViewHolder
             (Context context, ViewGroup parent, int layoutId, List data ,
-             @Nullable BaseRecyclerAdapter.OnItemClickListener listener) {
+             @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener) {
         return BaseViewHolder.createViewHolder(context, LayoutInflater.from(context).inflate
                 (layoutId, parent, false), data, listener);
     }
@@ -54,4 +54,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
         TextView textView = getView(viewId);
         textView.setText(text);
     }
+
+    // todo itemView点击事件
 }

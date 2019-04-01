@@ -13,13 +13,13 @@ import java.util.List;
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>{
 
     private Context mContext;
-    private List<T> mDatas;
+    private List<T> mData;
     private int mLayout;
-    private OnItemClickListener mListener;
+    private OnViewHolderClickListener mListener;
 
     public BaseRecyclerAdapter(Context context, List<T> list, @IdRes int layoutId,
-                               @Nullable OnItemClickListener listener){
-        this.mDatas = list;
+                               @Nullable OnViewHolderClickListener listener){
+        this.mData = list;
         this.mLayout = layoutId;
         this.mContext = context;
         this.mListener = listener;
@@ -27,23 +27,25 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseVi
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return mData.size();
     }
 
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return BaseViewHolder.
-                createViewHolder(mContext, parent, mLayout, mDatas, mListener);
+                createViewHolder(mContext, parent, mLayout, mData, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         final int mPosition = position;
-        bindHolder(holder, mDatas.get(position));
+        bindHolder(holder, mData.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.OnItemClick(mPosition);
+                if (mListener != null) {
+                    mListener.onClick(mPosition);
+                }
             }
         });
     }
@@ -51,11 +53,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseVi
     public abstract void bindHolder(BaseViewHolder holder, T item);
 
     // 更新 mListener
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
     }
 
-    public interface OnItemClickListener {
-        void OnItemClick(int taskId);
+    interface OnViewHolderClickListener {
+        void onClick(int taskId);
     }
 }

@@ -13,10 +13,9 @@ import android.view.ViewGroup;
  */
 public abstract class BaseFragment extends Fragment {
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+                             ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(setContentView(), container, false);
         initView(view);
         initListener();
