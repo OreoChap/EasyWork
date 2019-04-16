@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>{
@@ -52,12 +51,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseVi
 
     public abstract void bindHolder(BaseViewHolder holder, T item);
 
-    // 更新 mListener
     public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
     }
 
     interface OnViewHolderClickListener {
-        void onClick(int taskId);
+        void onClick(int viewHolderPosition);
     }
 }

@@ -8,9 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
-
 import com.oreooo.library.R;
-
 
 public class BaseActivity extends AppCompatActivity {
 

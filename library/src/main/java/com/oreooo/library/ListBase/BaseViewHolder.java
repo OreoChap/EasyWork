@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class BaseViewHolder extends RecyclerView.ViewHolder{
@@ -54,6 +53,4 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
         TextView textView = getView(viewId);
         textView.setText(text);
     }
-
-    // todo itemView点击事件
 }
