@@ -1,5 +1,6 @@
 package com.oreooo.library.MvpBase;
 
+import android.support.annotation.IdRes;
 import android.support.annotation.MenuRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -11,8 +12,8 @@ import android.view.View;
 import com.oreooo.library.R;
 
 public class BaseActivity extends AppCompatActivity {
-
-    private int MenuID;
+    int MenuID;
+    protected Toolbar mToolbar;
 
     public void initToolBar(Toolbar toolbar) {
         if (null == toolbar)return;
@@ -32,17 +33,9 @@ public class BaseActivity extends AppCompatActivity {
         });
     }
 
-    public void initToolBar(Toolbar toolbar, String title) {
-        if (null == toolbar)return;
-        toolbar.setTitle(title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+    public void initToolBar(@IdRes int toolbarId, @StringRes int title) {
+        mToolbar = findViewById(toolbarId);
+        initToolBar(mToolbar, title);
     }
 
     public void initToolBarNoNavigation(Toolbar toolbar, @Nullable String title) {

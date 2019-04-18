@@ -21,9 +21,7 @@ import android.view.WindowManager;
  */
 public abstract class BaseDialog extends DialogFragment {
 
-    @LayoutRes
-    protected int mLayoutResId;
-
+    @LayoutRes protected int mLayoutResId;
     private float mDimAmount = 0.5f;//背景昏暗度
     private boolean mShowBottomEnable;//是否底部显示
     private int mMargin = 0;//左右边距
