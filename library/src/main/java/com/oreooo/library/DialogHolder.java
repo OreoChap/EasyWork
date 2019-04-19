@@ -5,17 +5,17 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
 
-public class ViewHolder {
+public class DialogHolder {
     private SparseArray<View> views;
     private View convertView;
 
-    private ViewHolder(View view) {
+    private DialogHolder(View view) {
         convertView = view;
         views = new SparseArray<>();
     }
 
-    public static ViewHolder create(View view) {
-        return new ViewHolder(view);
+    public static DialogHolder create(View view) {
+        return new DialogHolder(view);
     }
 
     /**

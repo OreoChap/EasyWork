@@ -48,7 +48,7 @@ public abstract class BaseDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(mLayoutResId, container, false);
-        convertView(ViewHolder.create(view), this);
+        convertView(DialogHolder.create(view), this);
         return view;
     }
 
@@ -179,7 +179,7 @@ public abstract class BaseDialog extends DialogFragment {
      * @param holder
      * @param dialog
      */
-    public abstract void convertView(ViewHolder holder, BaseDialog dialog);
+    public abstract void convertView(DialogHolder holder, BaseDialog dialog);
 
     /**
      * 获取屏幕宽度

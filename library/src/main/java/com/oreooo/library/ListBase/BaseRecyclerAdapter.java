@@ -55,7 +55,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseVi
         this.mListener = listener;
     }
 
-    interface OnViewHolderClickListener {
+    public interface OnViewHolderClickListener {
         void onClick(int viewHolderPosition);
     }
 }
