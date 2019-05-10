@@ -36,7 +36,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     public static BaseViewHolder createViewHolder
             (Context context, ViewGroup parent, int layoutId, List data ,
              @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener) {
-        return BaseViewHolder.createViewHolder(context, LayoutInflater.from(context).inflate
+        return new BaseViewHolder(context, LayoutInflater.from(context).inflate
                 (layoutId, parent, false), data, listener);
     }
 
