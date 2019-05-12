@@ -64,9 +64,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         final int mPosition = position;
         if (getItemViewType(position) == TYPE_NORMAL) {
             bindHolder(holder, mData.get(position - 1));
-        } else if (getItemViewType(position) == TYPE_HEADER) {
+        } else if (getItemViewType(position) == TYPE_HEADER && mHeaderView != null) {
             bindHeaderHolder(holder);
-        } else if (getItemViewType(position) == TYPE_FOOTER) {
+        } else if (getItemViewType(position) == TYPE_FOOTER && mFooterView != null) {
             bindFooterHolder(holder);
         }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
