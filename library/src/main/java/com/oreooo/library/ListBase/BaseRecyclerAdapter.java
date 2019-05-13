@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>{
-
     private Context mContext;
     private List<T> mData;
     private int mLayoutId;
@@ -62,8 +61,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final int mPosition = position;
-        if (getItemViewType(position) == TYPE_NORMAL) {
+        if (getItemViewType(position) == TYPE_NORMAL && mHeaderView != null) {
             bindHolder(holder, mData.get(position - 1));
+        } else if (getItemViewType(position) == TYPE_NORMAL && mHeaderView == null){
+            bindHolder(holder, mData.get(position));
         } else if (getItemViewType(position) == TYPE_HEADER && mHeaderView != null) {
             bindHeaderHolder(holder);
         } else if (getItemViewType(position) == TYPE_FOOTER && mFooterView != null) {
@@ -94,7 +95,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return TYPE_NORMAL;
     }
 
-    abstract void bindHolder(ViewHolder holder, T item);
+    protected abstract void bindHolder(ViewHolder holder, T item);
 
     public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
@@ -114,7 +115,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         void onClick(int position);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    protected static class ViewHolder extends RecyclerView.ViewHolder{
 
         private SparseArray<View> mViews;
         private Context mContext;
@@ -147,7 +148,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
                     (layoutId, parent, false), listener);
         }
 
-        <T extends View> T getView(int viewId) {
+        public <T extends View> T getView(int viewId) {
             View view = mViews.get(viewId);
             if (view == null) {
                 view = mView.findViewById(viewId);
