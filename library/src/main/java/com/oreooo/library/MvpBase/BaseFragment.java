@@ -16,14 +16,11 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(setContentView(), container, false);
-        initView(view);
-        initListener();
+        initView(view, savedInstanceState);
         return view;
     }
 
-    public abstract void initView(View view);
-
-    public abstract void initListener();
+    public abstract void initView(View view, Bundle savedInstanceState);
 
     public abstract int setContentView();
 }
