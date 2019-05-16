@@ -116,7 +116,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder{
-
         private SparseArray<View> mViews;
         private Context mContext;
         private View mView;
