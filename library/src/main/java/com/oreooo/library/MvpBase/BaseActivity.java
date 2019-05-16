@@ -12,36 +12,26 @@ import android.view.View;
 import com.oreooo.library.R;
 
 public class BaseActivity extends AppCompatActivity {
-    int MenuID;
+    private int MenuID;
     protected Toolbar mToolbar;
 
-    public void initToolBar(Toolbar toolbar) {
-        if (null == toolbar)return;
-        initToolBar(toolbar, R.string.app_name);
+    protected void initToolBar(@IdRes int toolbarId, @StringRes int title) {
+        if (toolbarId == 0) return;
+        mToolbar = findViewById(toolbarId);
+        if (title != 0) mToolbar.setTitle(title);
+        setSupportActionBar(mToolbar);
     }
 
-    public void initToolBar(Toolbar toolbar, @StringRes int title) {
-        if (null == toolbar)return;
-        toolbar.setTitle(title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+    protected void initBackToolBar(@IdRes int toolbarId, @StringRes int title) {
+        if (toolbarId == 0) return;
+        initToolBar(toolbarId, title);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-    }
-
-    public void initToolBar(@IdRes int toolbarId, @StringRes int title) {
-        mToolbar = findViewById(toolbarId);
-        initToolBar(mToolbar, title);
-    }
-
-    public void initToolBarNoNavigation(Toolbar toolbar, @Nullable String title) {
-        if (null == toolbar)return;
-        if (!TextUtils.isEmpty(title)) toolbar.setTitle(title);
-        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -52,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    public void setMenu(@MenuRes int MenuId) {
+    protected void setMenu(@MenuRes int MenuId) {
         this.MenuID = MenuId;
     }
 }
