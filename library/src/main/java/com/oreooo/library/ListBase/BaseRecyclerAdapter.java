@@ -93,21 +93,25 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return TYPE_NORMAL;
     }
 
-    public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
+    protected void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
     }
 
-    public void setHeaderView(View headerView) {
+    protected void setHeaderView(View headerView) {
         mHeaderView = headerView;
         notifyItemInserted(0);
     }
 
-    public void setFooterView(View footerView) {
+    protected void setFooterView(View footerView) {
         mFooterView = footerView;
         notifyItemInserted(getItemCount()-1);
     }
 
-    public interface OnViewHolderClickListener {
+    protected Context getAdapterContext() {
+        return mContext;
+    }
+
+    protected interface OnViewHolderClickListener {
         void onClick(int position);
     }
 
