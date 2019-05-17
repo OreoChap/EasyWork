@@ -9,8 +9,6 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>{
@@ -19,7 +17,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     private int mLayoutId;
     private OnViewHolderClickListener mListener;
 
-    // 头尾ViewHolder实例
     private View mHeaderView;
     private View mFooterView;
     protected static final int TYPE_HEADER = 0;  //说明是带有Header的
@@ -80,6 +77,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         });
     }
 
+    protected abstract void bindHolder(ViewHolder holder, T item);
     protected void bindHeaderHolder(ViewHolder holder){}
     protected void bindFooterHolder(ViewHolder holder){}
 
@@ -94,8 +92,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         }
         return TYPE_NORMAL;
     }
-
-    protected abstract void bindHolder(ViewHolder holder, T item);
 
     public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
