@@ -9,18 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- *   如果重写了onCreateView()，子类需要调用super.onCreateView()，才能使initView()正常运作
- */
 public abstract class BaseFragment extends Fragment {
     private Context context;
+    private View mView;
 
+    /**
+     *   如果重写了onCreateView()，子类需要调用super.onCreateView()，才能使init()正常运作
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(setContentView(), container, false);
-        init(view, savedInstanceState);
-        return view;
+        mView = inflater.inflate(setContentView(), container, false);
+        init(mView, savedInstanceState);
+        return mView;
     }
 
     public abstract void init(View view, Bundle savedInstanceState);
