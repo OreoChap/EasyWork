@@ -77,6 +77,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         });
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        super.onBindViewHolder(holder, position, payloads);
+    }
+
     protected abstract void bindHolder(ViewHolder holder, T item);
     protected void bindHeaderHolder(ViewHolder holder){}
     protected void bindFooterHolder(ViewHolder holder){}
@@ -115,7 +120,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         void onClick(int position);
     }
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         private SparseArray<View> mViews;
         private Context mContext;
         private View mView;
