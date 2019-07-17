@@ -1,4 +1,4 @@
-package com.oreooo.library;
+package com.oreooo.library.Dialog;
 
 import android.content.Context;
 import android.os.Bundle;

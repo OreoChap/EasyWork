@@ -1,4 +1,4 @@
-package com.oreooo.library;
+package com.oreooo.library.Dialog;
 
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
