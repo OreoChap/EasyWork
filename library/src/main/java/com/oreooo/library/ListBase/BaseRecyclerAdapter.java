@@ -19,9 +19,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     private View mHeaderView;
     private View mFooterView;
-    protected static final int TYPE_HEADER = 0;  //说明是带有Header的
-    protected static final int TYPE_FOOTER = 1;  //说明是带有Footer的
-    protected static final int TYPE_NORMAL = 2;  //说明是不带有header和footer的
+    private static final int TYPE_HEADER = 0;  //说明是带有Header的
+    private static final int TYPE_FOOTER = 1;  //说明是带有Footer的
+    private static final int TYPE_NORMAL = 2;  //说明是不带有header和footer的
 
     public BaseRecyclerAdapter(Context context, List<T> list, @IdRes int layoutId,
                                @Nullable OnViewHolderClickListener listener){
@@ -116,7 +116,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return mContext;
     }
 
-    protected interface OnViewHolderClickListener {
+    public interface OnViewHolderClickListener {
         void onClick(int position);
     }
 
