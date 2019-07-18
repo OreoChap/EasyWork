@@ -71,7 +71,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onClick(mPosition);
+                    mListener.onClick(mPosition, v);
                 }
             }
         });
@@ -117,7 +117,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     }
 
     public interface OnViewHolderClickListener {
-        void onClick(int position);
+        void onClick(int position, View view);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
