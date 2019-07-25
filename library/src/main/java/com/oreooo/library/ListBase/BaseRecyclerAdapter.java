@@ -59,9 +59,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final int mPosition = position;
         if (getItemViewType(position) == TYPE_NORMAL && mHeaderView != null) {
-            bindHolder(holder, mData.get(position - 1));
+            bindHolder(holder, mData.get(position - 1), position);
         } else if (getItemViewType(position) == TYPE_NORMAL && mHeaderView == null){
-            bindHolder(holder, mData.get(position));
+            bindHolder(holder, mData.get(position), position);
         } else if (getItemViewType(position) == TYPE_HEADER && mHeaderView != null) {
             bindHeaderHolder(holder);
         } else if (getItemViewType(position) == TYPE_FOOTER && mFooterView != null) {
@@ -82,7 +82,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         super.onBindViewHolder(holder, position, payloads);
     }
 
-    protected abstract void bindHolder(ViewHolder holder, T item);
+    protected abstract void bindHolder(ViewHolder holder, T item, int position);
     protected void bindHeaderHolder(ViewHolder holder){}
     protected void bindFooterHolder(ViewHolder holder){}
 
