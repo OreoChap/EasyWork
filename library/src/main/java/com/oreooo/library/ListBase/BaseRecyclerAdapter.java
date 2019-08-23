@@ -82,9 +82,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         super.onBindViewHolder(holder, position, payloads);
     }
 
-    protected abstract void bindHolder(ViewHolder holder, T item, int position);
-    protected void bindHeaderHolder(ViewHolder holder){}
-    protected void bindFooterHolder(ViewHolder holder){}
+    public abstract void bindHolder(ViewHolder holder, T item, int position);
+    public void bindHeaderHolder(ViewHolder holder){}
+    public void bindFooterHolder(ViewHolder holder){}
 
     @Override
     public int getItemViewType(int position) {
@@ -98,21 +98,21 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         return TYPE_NORMAL;
     }
 
-    protected void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
+    public void setOnViewHolderClickListener(OnViewHolderClickListener listener) {
         this.mListener = listener;
     }
 
-    protected void setHeaderView(View headerView) {
+    public void setHeaderView(View headerView) {
         mHeaderView = headerView;
         notifyItemInserted(0);
     }
 
-    protected void setFooterView(View footerView) {
+    public void setFooterView(View footerView) {
         mFooterView = footerView;
         notifyItemInserted(getItemCount()-1);
     }
 
-    protected Context getAdapterContext() {
+    public Context getAdapterContext() {
         return mContext;
     }
 
