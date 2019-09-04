@@ -12,7 +12,7 @@ import android.view.View;
 import com.oreooo.library.R;
 
 public class BaseActivity extends AppCompatActivity {
-    private int MenuID;
+    protected static int MenuID;
     protected Toolbar mToolbar;
 
     protected void initToolBar(@IdRes int toolbarId, @StringRes int title) {
@@ -42,7 +42,7 @@ public class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void setMenu(@MenuRes int MenuId) {
-        this.MenuID = MenuId;
+    protected static void setMenu(@MenuRes int MenuId) {
+        MenuID = MenuId;
     }
 }

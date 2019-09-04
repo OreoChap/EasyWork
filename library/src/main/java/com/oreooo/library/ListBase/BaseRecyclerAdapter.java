@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 
-public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>{
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerAdapter.BaseViewHolder>{
     private Context mContext;
     private List<T> mData;
     private int mLayoutId;
@@ -44,19 +44,19 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(mHeaderView != null && viewType == TYPE_HEADER) {
-            return new ViewHolder(mHeaderView);
+            return new BaseViewHolder(mHeaderView);
         }
         if(mFooterView != null && viewType == TYPE_FOOTER) {
-            return new ViewHolder(mFooterView);
+            return new BaseViewHolder(mFooterView);
         }
-        return ViewHolder.
+        return BaseViewHolder.
                 createViewHolder(mContext, parent, mLayoutId, mListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public final void onBindViewHolder(@NonNull BaseRecyclerAdapter.BaseViewHolder holder, int position) {
         final int mPosition = position;
         if (getItemViewType(position) == TYPE_NORMAL && mHeaderView != null) {
             bindHolder(holder, mData.get(position - 1), position);
@@ -77,14 +77,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         });
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        super.onBindViewHolder(holder, position, payloads);
-    }
-
-    public abstract void bindHolder(ViewHolder holder, T item, int position);
-    public void bindHeaderHolder(ViewHolder holder){}
-    public void bindFooterHolder(ViewHolder holder){}
+    public abstract void bindHolder(BaseViewHolder holder, T item, int position);
+    public void bindHeaderHolder(BaseViewHolder holder){}
+    public void bindFooterHolder(BaseViewHolder holder){}
 
     @Override
     public int getItemViewType(int position) {
@@ -120,18 +115,18 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
         void onClick(int position, View view);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class BaseViewHolder extends RecyclerView.ViewHolder{
         private SparseArray<View> mViews;
         private Context mContext;
         private View mView;
         private BaseRecyclerAdapter.OnViewHolderClickListener mListener;
 
-        private ViewHolder(View itemView) {
+        private BaseViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
 
-        private ViewHolder(Context context, View itemView,
+        private BaseViewHolder(Context context, View itemView,
                                @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener){
             super(itemView);
             mViews = new SparseArray<>();
@@ -140,15 +135,15 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
             this.mListener = listener;
         }
 
-        static ViewHolder createViewHolder(Context context, View itemView,
+        static BaseViewHolder createViewHolder(Context context, View itemView,
                                                  @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener) {
-            return new ViewHolder(context, itemView, listener);
+            return new BaseViewHolder(context, itemView, listener);
         }
 
-        static ViewHolder createViewHolder
+        static BaseViewHolder createViewHolder
                 (Context context, ViewGroup parent, int layoutId,
                  @Nullable BaseRecyclerAdapter.OnViewHolderClickListener listener) {
-            return new ViewHolder(context, LayoutInflater.from(context).inflate
+            return new BaseViewHolder(context, LayoutInflater.from(context).inflate
                     (layoutId, parent, false), listener);
         }
 
